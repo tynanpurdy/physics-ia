@@ -1,66 +1,68 @@
-\documentclass[12pt,letterpaper]{article}
-\usepackage{color}
+\documentclass[12pt, letterpaper]{article}
+\usepackage{parskip}
+\usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{geometry}
 \usepackage{setspace}
-\usepackage{anyfontsize}
-\usepackage{parskip}
-\usepackage{indentfirst}
-\usepackage{amsmath}
-\usepackage{natbib}
-\usepackage{float}
 \usepackage{subcaption}
-\usepackage{gensymb}
+\usepackage{anyfontsize}
+\usepackage{indentfirst}
+\usepackage[utf8]{inputenc}
+\usepackage[american]{babel}
+\usepackage[babel]{csquotes}
+\usepackage[	style=phys,
+				articletitle=false,
+				biblabel=brackets,
+				chaptertitle=false,
+				pageranges=false]{biblatex}
+
+\addbibresource{physics-ia.bib}
+\defbibheading{bibliography}{\section{Bibliography}}
+\bibliography{physics-ia}
 
 \geometry{letterpaper, portrait, margin=1in}
-\doublespace
-\title{Wobot}
-\author{Tynan Purdy}
-\date{\vspace{-5ex}}
 \graphicspath{{../imgs/}}
+
+\newcommand{\sorta}[1]{`#1'}
+\newcommand{\poses}[1]{#1's}
+
+\title{Static Boi}
+\author{Tynan Purdy}
+\date{May 2019}
 
 \begin{document}
 \large
+\doublespace{}
 \parindent=0.5in
+
 {\fontsize{12}{14.4}
-	{\singlespace
-	\pagenumbering{gobble}
-	\maketitle
-	\begin{center}
-	\vspace{4mm}
-	002129-0004 \\
-	\vspace{4mm}
-	IB Physics HL IA \\
-	\vspace{4mm}
-	May 2019 \\
-	\vspace{4mm}
-	Words:  \\
-	\end{center}
-	}
+  {\singlespace
+    \pagenumbering{gobble}
+    \maketitle
+    \begin{center}
+    002129-0004 \\
+    \vspace{4mm}
+    IB Physics HL IA \\
+    \vspace{4mm}
+    Words:  \\ % words
+    \end{center}
+  }
 }	
 
-\newpage
-\pagenumbering{arabic}
-\begin{abstract}
-
-\end{abstract}
 
 \newpage
 \tableofcontents
+\pagenumbering{arabic}
+\newpage
+
+\section{}
 
 \newpage
-\section{Introduction}
-
-
-\section{Conclusion}
-
-
-\newpage
-\bibliography{physics-ia}
-\bibliographystyle{apa}
+\printbibliography{}
 
 \newpage
 \section{Appendix}
-\listoffigures
+\listoffigures{}
 
 \end{document}
