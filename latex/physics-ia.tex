@@ -55,7 +55,7 @@
 
 %TC:break Abstract
 \begin{abstract}
-One of the greatest challenges of structural engineering is to reduce the weight of a system without compromising its strength. Hole patterns are a go-to solution to make parts lighter and maintain the majority of their rigidity. The problem is, what hole pattern is best? With many 2D tessellation patterns to choose from, it can be difficult to determine the optimal pattern to use. This investigation will simulate stresses on test parts with a variety of hole patterns to determine which shape maintains the highest strength in an array of scenarios. 
+One of the greatest challenges of structural engineering is to reduce the weight of a system without compromising its strength. Hole patterns are a go-to solution to make parts lighter and maintain the majority of their rigidity. The problem is, what hole pattern is best? With many 2D tessellation patterns to choose from, it can be difficult to determine the optimal pattern to use. This investigation will simulate stresses on test parts with a variety of polygon hole patterns to determine which shape maintains the highest strength in an array of scenarios. 
 
 Words: % words
 
@@ -74,7 +74,48 @@ Words: % words
 
 \subsection{Variables}
 
+
+
+To keep the stress analysis of each part fair, certain properties were controlled for every part. 
+
+\begin{itemize}
+\item All parts have the dimensions of 1000mm x 1000mm x 5mm
+\item All parts are set to the material 6061 Aluminum Alloy
+\item All parts have a mass of 2.5kg, within $\pm2.5\%$ error (except the solid test part)
+\item All parts have a 10mm perimeter with no holes
+\item All polygon holes have a 10mm wide edge
+\item An equal force will be applied to each part for each test
+\end{itemize}
+
+Each part is not exactly 2.5kg because the skill in SolidWorks and time required to reach that target are beyond the scope of this investigation and the researcher. 2.5kg was chosen as the target mass because it was the approximate mass of the \sorta{square-pattern} part. The 10mm perimeter was included to ensure equal mass where forces will be applied in the various simulations, and that the parts would have a closed perimeter. 
+
+Variables that will change based on the shape used, and be recorded, are as follows:
+
+\begin{itemize}
+\item Hole Area
+\item Part Surface Area
+\item Number of holes
+\end{itemize}
+
+A total of 6 different patterns will be tested in simulated stress tests.
+
+\begin{enumerate}
+\item Filled (control)
+\item Square
+\item Square Diamond
+\item Hex
+\item Hex Diamond
+\item Triangle
+\end{enumerate}
+
 \subsection{Procedure}
+
+\begin{enumerate}
+\item Linear Tension
+\item Linear Compression
+\item Torsion
+\item Bending
+\end{enumerate}
 
 \section{Analysis}
 

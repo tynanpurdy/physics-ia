@@ -46,14 +46,17 @@ uniaxial stress equations
 ### Part Specifications
 
 - 1m x 1m
-- Guage Table: Sample Aluminum Metric
-- Gauge 10
+- 6061 Alloy Aluminum
+- 5 mm thick
+- 10 mm perimeter
+- 10 mm wide edges
 
 ### Patterns
 
 - Filled (Control)
 - Square
 - Diamond (within square)
+- Diamond (within hex)
 - Hex
 - Triangle (within hex)
 
