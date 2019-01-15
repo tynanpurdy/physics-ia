@@ -14,6 +14,7 @@
 \usepackage[babel]{csquotes}
 \usepackage[	style=phys,
 				articletitle=false,
+				backend=bibtex,
 				biblabel=brackets,
 				chaptertitle=false,
 				pageranges=false]{biblatex}
@@ -69,7 +70,20 @@ Words: % words
 
 \section{Background}
 
+\subsection{Statics}
 
+Statics is an area of physics thoroughly used in engineering, and particularly in the area of solid mechanics and structural engineering. 
+
+\subsection{Solid Mechanics}
+
+The field of solid mechanics analyzes the deformations of a solid under system changes. Deformation is the change ($\Delta$) between the rest shape and the final shape. These changes can include changes in forces, temperature, phase changes and other internal or external changes \autocite{chou_elasticity:_1992}. A variety of models have been developed to describe different types of deformations of solids:
+
+\begin{itemize}
+\item Plasticity: The degree to which an object can deform
+\item Elasticity: The degree to which an object can return to rest shape after deformation
+\end{itemize}
+
+For this investigation, the elasticity and plasticity model will be used to describe the characterize the simulated deformations. 
 
 \section{Simulation}
 
@@ -109,7 +123,7 @@ A total of 6 different patterns will be tested in simulated stress tests.
 \item Triangle
 \end{enumerate}
 
-The \sorta{filled} pattern is a solid sheet. It is used as a reference test as well as a data point to show stress properties when no holes are used. It should be noted that not all holes have the same area since hole patterns that do not match the shape of the part will not fit the part perfectly, and some shapes will be \sorta{cut off}. The surface area of each part is the 2D surface area of the flat sheet.
+The \sorta{filled} pattern is a solid sheet. It is used as a reference test as well as a data point to show stress properties when no holes are used. It should be noted that not all holes have the same area since hole patterns that do not match the shape of the part will not fit an integer number of shapes, and some shapes will be \sorta{cut off}. The vertices of incomplete shapes are not identical to the vertices of whole holes. The inconsistent vertices may have an effect on the results of the investigation. The surface area of each part is the 2D surface area of the flat sheet. 
 
 \begin{figure}[H]
 	\label{parts}
@@ -143,19 +157,22 @@ The \sorta{filled} pattern is a solid sheet. It is used as a reference test as w
 	\setlength{\tabcolsep}{10pt} % Default value: 6pt
 	\renewcommand{\arraystretch}{1.5} % Default value: 1
 		\begin{tabular}{ | c | c | c | c | c | }\hline
-			Pattern 		& Mass (kg) 	& Surface Area (m$^2$)	& Max Hole Area (cm$^2$) 	& $n$ Holes 	\\\hline
-			Filled			& 13.50 	& 1.000 			& 0			 		& 0		\\\hline
-			Square		& 2.565 	& 0.190 			& 100.00		 		& 81		\\\hline
-			Square Diamond	& 2.545 	& 0.188 			& 129.37	 			& 84		\\\hline
-			Hex			& 2.506 	& 0.186 			& 114.55	 			& 94		\\\hline
-			Hex Diamond		& 2.497 	& 0.185 			& 155.38	 			& 70		\\\hline
-			Triangle		& 2.500 	& 0.185			& 170.65	 			& 64		\\\hline
+			Pattern 			& Mass (kg) 	& Surface Area (m$^2$)	& Max Hole Area (cm$^2$) 	& $n$ Holes 	\\\hline
+			Filled				& 13.50 		& 1.000 						& 0			 					& 0			\\\hline
+			Square			& 2.565 		& 0.190 						& 100.00		 					& 81			\\\hline
+			Square Diamond	& 2.545 		& 0.188 						& 129.37	 						& 62.77		\\\hline
+			Hex				& 2.506 		& 0.186 						& 114.55	 						& 71.06		\\\hline
+			Hex Diamond		& 2.497 		& 0.185 						& 155.38	 						& 52.45		\\\hline
+			Triangle			& 2.500 		& 0.185						& 170.65				 			& 47.76		\\\hline
 		\end{tabular}
+		\caption{Part Properties}
 	\endgroup
 	\end{subfigure}
 \end{figure}
 
 \subsection{Procedure}
+
+A series of stress simulations will be performed on each of the 6 test parts. 
 
 \begin{enumerate}
 \item Linear Tension
