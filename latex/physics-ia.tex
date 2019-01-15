@@ -1,13 +1,14 @@
 \documentclass[12pt, letterpaper]{article}
+\usepackage{float}
 \usepackage{parskip}
+\usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage{graphicx}
-\usepackage{geometry}
 \usepackage{setspace}
+\usepackage{geometry}
 \usepackage{subcaption}
-\usepackage{anyfontsize}
 \usepackage{indentfirst}
+\usepackage{anyfontsize}
 \usepackage[utf8]{inputenc}
 \usepackage[american]{babel}
 \usepackage[babel]{csquotes}
@@ -81,7 +82,7 @@ To keep the stress analysis of each part fair, certain properties were controlle
 \begin{itemize}
 \item All parts have the dimensions of 1000mm x 1000mm x 5mm
 \item All parts are set to the material 6061 Aluminum Alloy
-\item All parts have a mass of 2.5kg, within $\pm2.5\%$ error (except the solid test part)
+\item All parts have a mass of 2.525kg, within $\pm2.5\%$ error (except the solid test part)
 \item All parts have a 10mm perimeter with no holes
 \item All polygon holes have a 10mm wide edge
 \item An equal force will be applied to each part for each test
@@ -107,6 +108,52 @@ A total of 6 different patterns will be tested in simulated stress tests.
 \item Hex Diamond
 \item Triangle
 \end{enumerate}
+
+The \sorta{filled} pattern is a solid sheet. It is used as a reference test as well as a data point to show stress properties when no holes are used. It should be noted that not all holes have the same area since hole patterns that do not match the shape of the part will not fit the part perfectly, and some shapes will be \sorta{cut off}. The surface area of each part is the 2D surface area of the flat sheet.
+
+\begin{figure}[H]
+	\label{parts}
+	\caption{Test Parts}
+	\begin{subfigure}[b]{.3\linewidth}
+		\includegraphics[width=\linewidth]{filled}
+		\caption{Filled}
+	\end{subfigure}
+	\begin{subfigure}[b]{.3\linewidth}
+		\includegraphics[width=\linewidth]{square}
+		\caption{Square}
+	\end{subfigure}
+	\begin{subfigure}[b]{.3\linewidth}
+		\includegraphics[width=\linewidth]{square-diamond}
+		\caption{Square Diamond}
+	\end{subfigure}
+	\begin{subfigure}[b]{.3\linewidth}
+		\includegraphics[width=\linewidth]{hex}
+		\caption{Hex}
+	\end{subfigure}
+	\begin{subfigure}[b]{.3\linewidth}
+		\includegraphics[width=\linewidth]{hex-diamond}
+		\caption{Hex Diamond}
+	\end{subfigure}
+	\begin{subfigure}[b]{.3\linewidth}
+		\includegraphics[width=\linewidth]{triangle}
+		\caption{Triangle}
+	\end{subfigure}
+	\begin{subfigure}[b]{\linewidth}
+	\begingroup
+	\setlength{\tabcolsep}{10pt} % Default value: 6pt
+	\renewcommand{\arraystretch}{1.5} % Default value: 1
+		\begin{tabular}{ | c | c | c | c | c | }\hline
+			Pattern 		& Mass (kg) 	& Surface Area (m$^2$)	& Max Hole Area (cm$^2$) 	& $n$ Holes 	\\\hline
+			Filled			& 13.50 	& 1.000 			& 0			 		& 0		\\\hline
+			Square		& 2.565 	& 0.190 			& 100.00		 		& 81		\\\hline
+			Square Diamond	& 2.545 	& 0.188 			& 129.37	 			& 84		\\\hline
+			Hex			& 2.506 	& 0.186 			& 114.55	 			& 94		\\\hline
+			Hex Diamond		& 2.497 	& 0.185 			& 155.38	 			& 70		\\\hline
+			Triangle		& 2.500 	& 0.185			& 170.65	 			& 64		\\\hline
+		\end{tabular}
+	\endgroup
+	\end{subfigure}
+\end{figure}
 
 \subsection{Procedure}
 
