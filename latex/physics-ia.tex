@@ -57,7 +57,7 @@
 
 %TC:break Abstract
 \begin{abstract}
-One of the greatest challenges of structural engineering is to reduce the weight of a system without compromising its strength. Hole patterns are a go-to solution to make parts lighter and maintain the majority of their rigidity. The problem is, what hole pattern is best? With many 2D tessellation patterns to choose from, it can be difficult to determine the optimal pattern to use. This investigation will simulate stresses on test parts with a variety of polygon hole patterns to determine which shape maintains the highest strength in an array of scenarios. 
+One of the greatest challenges of structural engineering is to reduce the weight of a system without compromising its strength. Hole patterns are a go-to solution to make parts lighter and maintain the majority of their rigidity. The problem is, what hole pattern is best? With many 2D tessellation patterns to choose from, it can be difficult to determine the optimal pattern to use. This investigation will simulate stresses on test sheet parts with a variety of polygon hole patterns to determine which shape maintains the highest strength in an array of scenarios. 
 
 Words: % words
 
@@ -70,6 +70,15 @@ Words: % words
 
 \section{Background}
 
+Sheet metal is one of the most commonly used materials in engineering, but especially finds its place in the field of robotics. Sheet metal provides a stiff, structural component while taking little space and weight. Robotics frequently requires complicated geometry in small volumes. Sometimes sheet metal can be used as a light structural material instead of solid or tube extrusion. In high school competitive robotics, teams use sheet metal to make custom gearboxes, gussets, base-plates, even entire drive-trains. For all of these applications, applying a lightening hole pattern is a great way to reduce weight while maintaining an acceptable durability and stiffness.
+
+\begin{figure}[H]
+	\centering
+	\label{fig:frc1}
+	\includegraphics[width=.8\linewidth]{frc-ex1}
+	\caption{FIRST Robotics Competition robot (team 1538) with rectangular diamond hole pattern}
+\end{figure}
+
 \subsection{Statics}
 
 Statics is an area of physics thoroughly used in engineering, and particularly in the area of solid mechanics and structural engineering. 
@@ -78,12 +87,47 @@ Statics is an area of physics thoroughly used in engineering, and particularly i
 
 The field of solid mechanics analyzes the deformations of a solid under system changes. Deformation is the change ($\Delta$) between the rest shape and the final shape. These changes can include changes in forces, temperature, phase changes and other internal or external changes \autocite{chou_elasticity:_1992}. A variety of models have been developed to describe different types of deformations of solids:
 
+
+
 \begin{itemize}
+\item Stress: The force applied over a specific cross-sectional area
+\item Strain: The response of a system to an applied stress
 \item Plasticity: The degree to which an object can deform
 \item Elasticity: The degree to which an object can return to rest shape after deformation
 \end{itemize}
 
 For this investigation, the elasticity and plasticity model will be used to describe the characterize the simulated deformations. 
+
+\begin{singlespace}
+\begin{equation}
+	\label{eq:stress}
+	\sigma_x \equiv \lim_{\Delta A \rightarrow 0} \frac{\Delta N}{\Delta A}
+\end{equation}
+\begin{small}
+\begin{itemize}
+\item[] $\sigma_x =$ stress
+\item[] $\Delta N =$ fraction of normal force $N$
+\item[] $\Delta A =$ cross-sectional area element
+\end{itemize}
+\end{small}
+\end{singlespace}
+
+
+\begin{singlespace}
+\begin{equation}
+	\label{eq:strain}
+	\varepsilon_x \equiv \frac{\sigma_x}{E} + \alpha \Delta T
+\end{equation}
+\begin{small}
+\begin{itemize}
+\item[] $\varepsilon_x =$ strain
+\item[] $\sigma_x =$ stress
+\item[] $E =$ modulus of elasticity
+\item[] $\alpha =$ temperature coefficient
+\item[] $\Delta T =$ change of temperature
+\end{itemize}
+\end{small}
+\end{singlespace}
 
 \section{Simulation}
 
