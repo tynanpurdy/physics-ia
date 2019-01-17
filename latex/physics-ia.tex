@@ -69,21 +69,49 @@ Words: % words
 \newpage
 
 \section{Background}
+\label{sec:background}
 
-Sheet metal is one of the most commonly used materials in engineering, but especially finds its place in the field of robotics. Sheet metal provides a stiff, structural component while taking little space and weight. Robotics frequently requires complicated geometry in small volumes. Sometimes sheet metal can be used as a light structural material instead of solid or tube extrusion. In high school competitive robotics, teams use sheet metal to make custom gearboxes, gussets, base-plates, even entire drive-trains. For all of these applications, applying a lightening hole pattern is a great way to reduce weight while maintaining an acceptable durability and stiffness.
+Sheet metal is one of the most commonly used materials in engineering, but especially finds its place in the field of robotics. Sheet metal provides a stiff, structural component while taking little space and weight. Robotics frequently requires complicated geometry in small volumes. Sometimes sheet metal can be used as a light structural material instead of solid or tube extrusion. In the FIRST Robotics Competition (FRC), teams use sheet metal to make custom gearboxes, gussets, base-plates, even entire drive-trains. For all of these applications, applying a lightening hole pattern is a great way to reduce weight while maintaining an acceptable durability and stiffness. As seen in Figure \ref{fig:frc1}, not every team uses the same pattern.
 
 \begin{figure}[H]
 	\centering
+	\caption{FRC Examples of Hole Patterns}
 	\label{fig:frc1}
-	\includegraphics[width=.8\linewidth]{frc-ex1}
-	\caption{FIRST Robotics Competition robot (team 1538) with rectangular diamond hole pattern}
+	\begin{subfigure}[t]{.64\linewidth}
+		\includegraphics[width=\linewidth]{frc-ex1}
+		\caption{FRC robot (team 1538) with a rectangular diamond hole pattern}
+	\end{subfigure}
+	\begin{subfigure}[t]{.35\linewidth}
+		\includegraphics[width=\linewidth]{frc-ex2}
+		\caption{FRC robot made almost entirely out of sheet metal (team 118) with a triangular hole pattern}
+	\end{subfigure}
 \end{figure}
 
 \subsection{Statics}
+\label{sec:statics}
 
-Statics is an area of physics thoroughly used in engineering, and particularly in the area of solid mechanics and structural engineering. 
+Statics is an area of physics thoroughly used in engineering, and particularly in the area of solid mechanics and structural engineering. For this investigation of a solid object under various loads and forces, solid mechanics provides a paradigm of study. Statics analyzes torque and force moments applied to a system, which is exactly what these simulations will do. 
+
+\begin{singlespace}
+\begin{equation}
+	\label{eq:force}
+	|\vec{M_O}| = \vec{F} \cdot \vec{r} = \vec{\tau}
+\end{equation}
+\begin{small}
+	\begin{itemize}
+	\item[] $|\vec{M_O}| =$ vector force moment
+	\item[] $\vec{F} =$ vector force applied
+	\item[] $\vec{r} =$ perpendicular distance to axis of rotation
+	\end{itemize}
+\end{small}
+\begin{equation}
+	\label{eq:torque}
+	x
+\end{equation}
+\end{singlespace}
 
 \subsection{Solid Mechanics}
+\label{sec:solid-mechanics}
 
 The field of solid mechanics analyzes the deformations of a solid under system changes. Deformation is the change ($\Delta$) between the rest shape and the final shape. These changes can include changes in forces, temperature, phase changes and other internal or external changes \autocite{chou_elasticity:_1992}. A variety of models have been developed to describe different types of deformations of solids:
 
@@ -96,7 +124,7 @@ The field of solid mechanics analyzes the deformations of a solid under system c
 \item Elasticity: The degree to which an object can return to rest shape after deformation
 \end{itemize}
 
-For this investigation, the elasticity and plasticity model will be used to describe the characterize the simulated deformations. 
+For this investigation, the stress and strain model will be used to describe the characterize the simulated deformations in tension and compression. 
 
 \begin{singlespace}
 \begin{equation}
@@ -130,10 +158,10 @@ For this investigation, the elasticity and plasticity model will be used to desc
 \end{singlespace}
 
 \section{Simulation}
+\label{sec:simulation}
 
 \subsection{Variables}
-
-
+\label{sec:variables}
 
 To keep the stress analysis of each part fair, certain properties were controlled for every part. 
 
@@ -215,6 +243,7 @@ The \sorta{filled} pattern is a solid sheet. It is used as a reference test as w
 \end{figure}
 
 \subsection{Procedure}
+\label{sec:procedure}
 
 A series of stress simulations will be performed on each of the 6 test parts. 
 
@@ -225,9 +254,14 @@ A series of stress simulations will be performed on each of the 6 test parts.
 \item Bending
 \end{enumerate}
 
+\subsection{Results}
+\label{sec:results}
+
 \section{Analysis}
+\label{sec:analysis}
 
 \section{Conclusion}
+\label{sec:conclusion}
 
 \newpage
 \printbibliography{}
