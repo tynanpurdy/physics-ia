@@ -46,7 +46,7 @@ uniaxial stress equations
 ### Part Specifications
 
 - 1m x 1m
-- 6061 Alloy Aluminum
+- 6061 Alloy Aluminum (Yield Strength: 5.515e7 N/m^2)
 - 5 mm thick
 - 10 mm perimeter
 - 10 mm wide edges
@@ -65,7 +65,10 @@ uniaxial stress equations
 - Tension
 - Compression
 - Torsion
-- Dip
+
+#### Test Parameters
+
+- Force = 500 N
 
 ### Variables
 
