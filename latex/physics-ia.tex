@@ -104,18 +104,14 @@ Statics is an area of physics thoroughly used in engineering, and particularly i
 	\item[] $\vec{r} =$ perpendicular distance to axis of rotation
 	\end{itemize}
 \end{small}
-\begin{equation}
-	\label{eq:torque}
-	x
-\end{equation}
 \end{singlespace}
+
+For each simulation, displacement  between $t_i$ and $t_f$ is recorded. Displacement is the vector change in position between initial position and final position, generically described as $\vec r_i - \vec r_f = \vec d$. In the Solidworks Simulation, the models for force moments and displacement are far more accurate, complicated, and do not need to be understood for analysis. 
 
 \subsection{Solid Mechanics}
 \label{sec:solid-mechanics}
 
 The field of solid mechanics analyzes the deformations of a solid under system changes. Deformation is the change ($\Delta$) between the rest shape and the final shape. These changes can include changes in forces, temperature, phase changes and other internal or external changes \autocite{chou_elasticity:_1992}. A variety of models have been developed to describe different types of deformations of solids:
-
-
 
 \begin{itemize}
 \item Stress: The force applied over a specific cross-sectional area
@@ -124,7 +120,7 @@ The field of solid mechanics analyzes the deformations of a solid under system c
 \item Elasticity: The degree to which an object can return to rest shape after deformation
 \end{itemize}
 
-For this investigation, the stress and strain model will be used to describe the characterize the simulated deformations in tension and compression. 
+For this investigation, the stress and strain model will be used to describe the characterize the simulated deformations in tension, compression and torsion. The model is an extension of Hooke's law, which describes the behavior of a spring. This similarity makes sense because all materials have some degree of elasticity, and therefore, can behave as a spring. 
 
 \begin{singlespace}
 \begin{equation}
@@ -156,6 +152,18 @@ For this investigation, the stress and strain model will be used to describe the
 \end{itemize}
 \end{small}
 \end{singlespace}
+
+Equations \ref{eq:stress} and \ref{eq:strain} are basic models of stress and strain. The simulations that will be run using the SolidWorks Simulation add-in use the Von Mises model for stress and strain by default (Equations \ref{eq:von-mises-stress} and \ref{eq:von-mises-strain}). The Von Mises model is well beyond the scope of understanding for this investigation, however it is an industry standard and is suitable for use in this case. 
+
+\begin{equation}
+	\label{eq:von-mises-stress}
+	\sigma_{ij} = \frac{1}{3} \delta_{ij} \sigma_{kk} + \sigma^\prime_{ij}
+\end{equation}
+
+\begin{equation}
+	\label{eq:von-mises-strain}
+	\varepsilon_{ij} = \frac{1}{3} \delta_{ij} \varepsilon_{kk} + \varepsilon^\prime_{ij}
+\end{equation}
 
 \section{Simulation}
 \label{sec:simulation}
@@ -251,8 +259,49 @@ A series of stress simulations will be performed on each of the 6 test parts.
 \item Linear Tension
 \item Linear Compression
 \item Torsion
-\item Bending
 \end{enumerate}
+
+The same input parameters will be used in each simulation, with different directions of force. 
+
+\begin{enumerate}
+\item Fixed geometry includes on side face of the sheet
+\item Force of 100N is applied to the face or edge opposite to the fixed face
+\item Mesh node size is 20mm$^2$
+\end{enumerate}
+
+For linear tension, the force is applied on the face opposite to the fixed face and directed normal to the face and outward. 
+For linear compression, the force is applied on the face opposite to the fixed face and directed normal to the face and inward.
+For torsion, the force is applied on the top corner edge of the face opposite to the fixed face. 
+
+\begin{figure}[H]
+	\centering
+	\label{fig:procedure}
+	\begin{subfigure}[t]{.3\linewidth}
+		\includegraphics[width=\linewidth]{frc-ex1}
+		\caption{Fixed geometry}
+	\end{subfigure}
+	\begin{subfigure}[t]{.3\linewidth}
+		\includegraphics[width=\linewidth]{frc-ex2}
+		\caption{Mesh size}
+	\end{subfigure}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\label{fig:forces}
+	\begin{subfigure}[t]{.3\linewidth}
+		\includegraphics[width=\linewidth]{frc-ex1}
+		\caption{Tension force}
+	\end{subfigure}
+	\begin{subfigure}[t]{.3\linewidth}
+		\includegraphics[width=\linewidth]{frc-ex2}
+		\caption{Compression force}
+	\end{subfigure}
+	\begin{subfigure}[t]{.3\linewidth}
+		\includegraphics[width=\linewidth]{frc-ex2}
+		\caption{Torsion force}
+	\end{subfigure}
+\end{figure}
 
 \subsection{Results}
 \label{sec:results}
