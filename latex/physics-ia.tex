@@ -5,6 +5,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{setspace}
+\usepackage{csvsimple}
 \usepackage{geometry}
 \usepackage{subcaption}
 \usepackage{indentfirst}
@@ -114,13 +115,13 @@ For each simulation, displacement  between $t_i$ and $t_f$ is recorded. Displace
 The field of solid mechanics analyzes the deformations of a solid under system changes. Deformation is the change ($\Delta$) between the rest shape and the final shape. These changes can include changes in forces, temperature, phase changes and other internal or external changes \autocite{chou_elasticity:_1992}. A variety of models have been developed to describe different types of deformations of solids:
 
 \begin{itemize}
-\item Stress: The force applied over a specific cross-sectional area
+\item Stress: The restoring force over a specific cross-sectional area
 \item Strain: The response of a system to an applied stress
 \item Plasticity: The degree to which an object can deform
 \item Elasticity: The degree to which an object can return to rest shape after deformation
 \end{itemize}
 
-For this investigation, the stress and strain model will be used to describe the characterize the simulated deformations in tension, compression and torsion. The model is an extension of Hooke's law, which describes the behavior of a spring. This similarity makes sense because all materials have some degree of elasticity, and therefore, can behave as a spring. 
+Stress is the force exerted by a material, against the external force, to return to rest shape, divided by the cross sectional area. For this investigation, the stress and strain model will be used to describe the characterize the simulated deformations in tension, compression and torsion. The model is an extension of Hooke's law, which describes the behavior of a spring. This similarity makes sense because all materials have some degree of elasticity, and therefore, can behave as a spring. 
 
 \begin{singlespace}
 \begin{equation}
@@ -276,12 +277,12 @@ For torsion, the force is applied on the top corner edge of the face opposite to
 \begin{figure}[H]
 	\centering
 	\label{fig:procedure}
-	\begin{subfigure}[t]{.3\linewidth}
-		\includegraphics[width=\linewidth]{frc-ex1}
+	\begin{subfigure}[t]{.8\linewidth}
+		\includegraphics[width=\linewidth]{./procedure/fixed-geometry}
 		\caption{Fixed geometry}
 	\end{subfigure}
 	\begin{subfigure}[t]{.3\linewidth}
-		\includegraphics[width=\linewidth]{frc-ex2}
+		\includegraphics[width=\linewidth]{./procedure/mesh}
 		\caption{Mesh size}
 	\end{subfigure}
 \end{figure}
@@ -289,21 +290,45 @@ For torsion, the force is applied on the top corner edge of the face opposite to
 \begin{figure}[H]
 	\centering
 	\label{fig:forces}
-	\begin{subfigure}[t]{.3\linewidth}
-		\includegraphics[width=\linewidth]{frc-ex1}
+	\begin{subfigure}[t]{.8\linewidth}
+		\includegraphics[width=\linewidth]{./procedure/tension-force}
 		\caption{Tension force}
 	\end{subfigure}
-	\begin{subfigure}[t]{.3\linewidth}
-		\includegraphics[width=\linewidth]{frc-ex2}
+	\begin{subfigure}[t]{.8\linewidth}
+		\includegraphics[width=\linewidth]{./procedure/compression-force}
 		\caption{Compression force}
 	\end{subfigure}
-	\begin{subfigure}[t]{.3\linewidth}
-		\includegraphics[width=\linewidth]{frc-ex2}
+	\begin{subfigure}[t]{.8\linewidth}
+		\includegraphics[width=\linewidth]{./procedure/torsion-force}
 		\caption{Torsion force}
 	\end{subfigure}
 \end{figure}
 
 \subsection{Results}
+
+
+
+\begin{figure}[H]
+	\label{fig:max}
+	\centering
+	\caption{Maximum values reached for displacement, stress, and strain, per test and part}
+	\begin{subfigure}[b]{0.8\linewidth}
+	\label{tab:tension}
+	\csvautotabular{../data/max-tension.csv}
+	\caption{Maximums in tension}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.8\linewidth}
+	\label{tab:compression}
+	\csvautotabular{../data/max-compression.csv}
+	\caption{Maximums in compression}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.8\linewidth}
+	\label{tab:torsion}
+	\csvautotabular{../data/max-torsion.csv}
+	\caption{Maximums in torsion}
+	\end{subfigure}
+\end{figure}
+
 \label{sec:results}
 
 \section{Analysis}
