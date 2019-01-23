@@ -121,7 +121,7 @@ Statics is an area of physics thoroughly used in engineering, and particularly i
 \end{small}
 \end{singlespace}
 
-For each simulation, displacement  between $t_i$ and $t_f$ is recorded. Displacement is the vector change in position between initial position and final position, generically described as $\vec r_i - \vec r_f = \vec d$. In the Solidworks Simulation, the models for force moments and displacement are far more accurate, complicated, and do not need to be understood for analysis. 
+For each simulation, displacement  between $t_i$ and $t_f$ is recorded. Displacement is the vector change in position between initial position and final position, generically described as $\vec r_i - \vec r_f = \vec d$. In the SolidWorks Simulation, the models for force moments and displacement are far more accurate than the simplified models described. 
 
 \subsection{Solid Mechanics}
 \label{sec:solid-mechanics}
@@ -168,7 +168,7 @@ Stress is the force exerted by a material, against the external force, to return
 \end{small}
 \end{singlespace}
 
-Equations \ref{eq:stress} and \ref{eq:strain} are basic models of stress and strain. The simulations that will be run using the SolidWorks Simulation add-in use the Von Mises model for stress and strain by default (Equations \ref{eq:von-mises-stress} and \ref{eq:von-mises-strain}). The Von Mises model is well beyond the scope of understanding for this investigation, however it is an industry standard and is suitable for use in this case. 
+Equations \ref{eq:stress} and \ref{eq:strain} are basic models of stress and strain. The simulations will be run using the SolidWorks Simulation add-in, which uses the Von Mises model for stress and strain by default (Equations \ref{eq:von-mises-stress} and \ref{eq:von-mises-strain}). The derivation of the Von Mises model is beyond the scope of this investigation, however it is an industry standard and is suitable for use in simulation. 
 
 \begin{equation}
 	\label{eq:von-mises-stress}
@@ -289,7 +289,7 @@ A series of applied-load simulations will be performed on each of the 6 test par
 The same input parameters will be used in each simulation, with different directions of force (see Figure \ref{fig:sim-loads}). 
 
 \begin{enumerate}
-\item Fixed geometry includes on side face of the sheet (Figure \ref{fig:settings-fixed})
+\item Fixed geometry includes one side face of the sheet (Figure \ref{fig:settings-fixed})
 \item Force of 100N is applied to the face or edge opposite to the fixed face (Figure \ref{fig:sim-loads})
 \item Mesh node size is 20mm$^2$ (Figure \ref{fig:settings-mesh})
 \end{enumerate}
@@ -333,21 +333,21 @@ For torsion, the force is applied on the top corner edge of the face opposite to
 \end{figure}
 
 The simulation is run after fixed geometry, forces, and mesh size are configured. 
-Every simulation is documented with three graphs of the final state color coded for von Mises stress, equivalent strain and URES displacement. An animation of the load force acting on the part is saved, as well as a .csv file of the final stress, strain, and displacement at each mesh node along the front plane. The .csv export settings are displayed in Figure \ref{fig:sim-data}. All graphs are displayed in appendices \ref{ap:te}, \ref{ap:c}, and \ref{ap:to}. Links to .cvs files and .avi animation files are found in Appendix \ref{ap:data}. 
+Every simulation is documented with three graphs of the final state color coded for von Mises stress, equivalent strain and URES displacement. An animation of the load force acting on the part is saved, as well as a .csv file of the final stress, strain, and displacement at each mesh node along the front plane. The .csv export settings are displayed in Figure \ref{fig:sim-data}. All graphs are displayed in Appendices \ref{ap:te}, \ref{ap:c}, and \ref{ap:to}. A link to .cvs files and .avi animation files is located in Appendix \ref{ap:data}. 
 
 \begin{figure}[H]
 	\centering
 	\caption{Data Export}
 	\label{fig:sim-data}
-	\begin{subfigure}[b]{.3\linewidth}
+	\begin{subfigure}[t]{.3\linewidth}
 		\caption{Stress .csv export}
 		\includegraphics[width=\linewidth]{./procedure/stress-list}
 	\end{subfigure}
-	\begin{subfigure}[b]{.3\linewidth}
+	\begin{subfigure}[t]{.3\linewidth}
 		\caption{Strain .csv export}
 		\includegraphics[width=\linewidth]{./procedure/strain-list}
 	\end{subfigure}
-	\begin{subfigure}[b]{.3\linewidth}
+	\begin{subfigure}[t]{.3\linewidth}
 		\caption{Displacement .csv export}
 		\includegraphics[width=\linewidth]{./procedure/displacement-list}
 	\end{subfigure}
@@ -387,14 +387,18 @@ Hex diamond experiences the most deformation and strain in all tests, and is onl
 \section{Analysis}
 \label{sec:analysis}
 
-To return to the question of which hole pattern best preserves strength in a sheet part under load, the answer depends on the desired effect. The triangle pattern deforms the least, providing an extremely rigid part despite its weight. Stress and strain may be high, but that is mainly because the stress is localized and not allowed to spread throughout the part. On the other hand, the hex pattern diffuses stress and strain, reducing the overall damage to the part, but allows substantial deformation. 
+The results show low deformation from the triangle pattern. This is not unexpected, as the triangle is the only regular euclidean polygon with all acute internal angles. Acute internal angles allows the shape to support it self when external stress is applied (Appendix \ref{ap:t-c-vm}), rather than collapsing, as the other shapes did (Appendix \ref{ap:sd-c-vm}). Obtuse internal angles are prone to open wider under load (Appendix \ref{ap:h-c-vm}), straining the vertices of the holes instead of using the force to strengthen the shape. 
 
-For rigid applications, such as structural elements or metal parts, a triangular hole pattern has proven to be the best at withstanding deformation under load. For flexible components, such as rubber or silicon, a hexagon pattern will distribute forces and stresses the most, of the tested patterns. 
+Appendix \ref{ap:s-te-es} demonstrates an interesting property. The strain from linear load is concentrated on edges parallel to the force, while little to no strain occurs in the edges perpendicular to the force. Shapes with edges out of alignment with the load will distribute the components of the force as a vector. The distributing behavior is best exhibited by Appendix \ref{ap:h-te-vm}, where the vertex closest to the tension force pulls on its neighboring vertices, a recursive process that is repeated in each hole. 
 
 \section{Conclusion}
 \label{sec:conclusion}
 
-Solidworks' simulation tools can be immensely valuable in the design process. Producing empirical data to choose design elements removes hours of testing, making safe and effective design more accessible and affordable. Practicing and learning the techniques in this investigation will be an advantage for my future engineering education and work. The conclusions of the investigation will aid many FRC teams that design lightened sheet metal parts. Of the two FRC examples in Figure \ref{fig:frc1}, it appears team 118 chose the right pattern. 
+To return to the question of which hole pattern best preserves strength in a sheet part under load, the answer depends on the desired effect. The triangle pattern deforms the least, providing an extremely rigid part despite its weight. Peak stress and strain may be high, but that is mainly because the stress is localized and not allowed to spread throughout the part. On the other hand, the hex pattern diffuses stress and strain, reducing the overall damage to the part, but allows substantial deformation. 
+
+For rigid applications, such as structural elements or metal parts, a triangular hole pattern has proven to be the best at withstanding deformation under load. For flexible components, such as rubber or silicon, a hexagon pattern will distribute forces and stresses the most, of the tested patterns. 
+
+SolidWorks' simulation tools can be immensely valuable in the design process. Producing empirical data to choose design elements removes hours of testing, making safe and effective design more accessible and affordable. Practicing and learning the techniques in this investigation will be an advantage for my future engineering education and work. The conclusions of the investigation will aid many FRC teams that design lightened sheet metal parts. Of the two FRC examples in Figure \ref{fig:frc1}, it appears team 118 chose the right pattern. 
 
 \newpage
 \printbibliography{}
@@ -686,6 +690,8 @@ Solidworks' simulation tools can be immensely valuable in the design process. Pr
 \label{ap:data}
 
 All animations and .csv data files are found at the \href{https://github.com/tynanpurdy/physics-ia/tree/master/data}{project GitHub repository}.
+
+\url{https://github.com/tynanpurdy/physics-ia/tree/master/data}
 
 \end{singlespace}
 \end{document}
