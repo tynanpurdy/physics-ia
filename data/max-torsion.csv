@@ -1,4 +1,4 @@
-﻿Part,Displacement,Strain,Stress
+﻿Part,Displacement (mm),Strain,Stress (N m$^{-2}$)
 Filled,4.23E+01,2.15E-04,2.22E+07
 Square,3.90E+02,2.17E-03,2.57E+08
 Square Diamond,3.78E+02,2.47E-03,3.65E+08
