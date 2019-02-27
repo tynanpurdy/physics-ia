@@ -43,11 +43,14 @@
 \newcommand{\sorta}[1]{`#1'}
 \newcommand{\poses}[1]{#1's}
 
-\title{The Optimal Strength-Retaining Hole Pattern for Sheet Material}
+\title{Finite Element Analysis of the Optimal Strength-Retaining Hole Pattern for Sheet Material}
 \author{Tynan Purdy}
 \date{May 2019}
 
+
+
 \begin{document}
+
 \nocite{*}
 \large
 \doublespace{}
@@ -58,11 +61,11 @@
     \pagenumbering{gobble}
     \maketitle
     \begin{center}
-    002129-0004 \\
+    002129-0002 \\
     \vspace{4mm}
     IB Physics HL IA \\
     \vspace{4mm}
-    Words: 1604  \\ % words
+    Words: 2118  \\ % words
     \end{center}
   }
 }	
@@ -261,13 +264,13 @@ The \sorta{filled} pattern is a solid sheet. It is used as a reference test as w
 	\setlength{\tabcolsep}{10pt} % Default value: 6pt
 	\renewcommand{\arraystretch}{1.5} % Default value: 1
 		\begin{tabular}{ | c | c | c | c | c | }\hline
-			Pattern 			& Mass (kg) 	& Surface Area (m$^2$)	& Max Hole Area (cm$^2$) 	& $n$ Holes 	\\\hline
-			Filled				& 13.50 		& 1.000 						& 0			 					& 0			\\\hline
-			Square			& 2.565 		& 0.190 						& 100.00		 					& 81			\\\hline
-			Square Diamond	& 2.545 		& 0.188 						& 129.37	 						& 62.77		\\\hline
-			Hex				& 2.506 		& 0.186 						& 114.55	 						& 71.06		\\\hline
-			Hex Diamond		& 2.497 		& 0.185 						& 155.38	 						& 52.45		\\\hline
-			Triangle			& 2.500 		& 0.185						& 170.65				 			& 47.76		\\\hline
+			Pattern 			& Mass (kg) 	& Surface Area (m$^2$)	& Max Hole Area (cm$^2$) 		& $n$ Holes 	\\\hline
+			Filled				& 13.50 		& 1.000 					& 0			 						& 0				\\\hline
+			Square				& 2.565 		& 0.190 					& 100.00		 					& 81			\\\hline
+			Square Diamond	& 2.545 		& 0.188 					& 129.37	 						& 62.77		\\\hline
+			Hex				& 2.506 		& 0.186 					& 114.55	 						& 71.06		\\\hline
+			Hex Diamond		& 2.497 		& 0.185 					& 155.38	 						& 52.45		\\\hline
+			Triangle			& 2.500 		& 0.185					& 170.65				 			& 47.76		\\\hline
 		\end{tabular}
 		\caption{Part Properties}
 	\endgroup
@@ -293,6 +296,8 @@ The same input parameters will be used in each simulation, with different direct
 \item Force of 100N is applied to the face or edge opposite to the fixed face (Figure \ref{fig:sim-loads})
 \item Mesh node size is 20mm$^2$ (Figure \ref{fig:settings-mesh})
 \end{enumerate}
+
+Mesh size is related to the real world accuracy of the simulation, as it determines the amount of detail calculated, as well as how long the simulation will take to run. A mesh size of 20mm$^2$ is relatively large for a precision analysis, and may not be entirely representative of real world behavior at the scale of the test parts. However, since this is a comparative study, 20mm$^2$ is a satisfactory amount of detail to compare behavior between the different parts. Tuning part models and meshes to lower uncertainties is an in-depth study of engineers when doing Finite Element Analysis, and reaching a realistic tolerance is beyond the scope of this investigation. 
 
 \begin{figure}[H]
 	\centering
@@ -333,7 +338,7 @@ For torsion, the force is applied on the top corner edge of the face opposite to
 \end{figure}
 
 The simulation is run after fixed geometry, forces, and mesh size are configured. 
-Every simulation is documented with three graphs of the final state color coded for von Mises stress, equivalent strain and URES displacement. An animation of the load force acting on the part is saved, as well as a .csv file of the final stress, strain, and displacement at each mesh node along the front plane. The .csv export settings are displayed in Figure \ref{fig:sim-data}. All graphs are displayed in Appendices \ref{ap:te}, \ref{ap:c}, and \ref{ap:to}. A link to .cvs files and .avi animation files is located in Appendix \ref{ap:data}. 
+Every simulation is documented with three graphs of the final state color coded for von Mises stress, equivalent strain and URES resultant displacement. Equivalent strain is a scalar, and has no units. An animation of the load force acting on the part is saved, as well as a .csv file of the final stress, strain, and displacement at each mesh node along the front plane. The .csv export settings are displayed in Figure \ref{fig:sim-data}. All graphs are displayed in Appendices \ref{ap:te}, \ref{ap:c}, and \ref{ap:to}. A link to .cvs files and .avi animation files is located in Appendix \ref{ap:data}. 
 
 \begin{figure}[H]
 	\centering
@@ -353,6 +358,8 @@ Every simulation is documented with three graphs of the final state color coded 
 	\end{subfigure}
 \end{figure}
 
+Running this study in a virtual simulation eliminates the safety concerns that would coincide with stretching, compressing, and bending test parts in the real world. Had a real experiment been run, it would likely use high power tools such as a hydraulic press, which can output thousands of Newtons of force without complying to work placed in its path. The worst that can happen in the digital simulation is running the simulation at a level of detail too high for the computing power of the computer used, which could overheat and damage components. Safe levels of detail were used in the simulation, as specified in Figure \ref{fig:settings-mesh}.
+
 \subsection{Results}
 \label{sec:results}
 
@@ -363,40 +370,83 @@ The table in Figure \ref{fig:max} shows the maximum value of stress, strain, and
 	\caption{Maximum values reached for displacement, stress, and strain, per test and part}
 	\label{fig:max}
 	\begin{subfigure}[b]{0.8\linewidth}
-	\label{tab:tension}
-	\csvautotabular{../data/max-tension.csv}
-	\caption{Maximums in tension}
+		\csvautotabular{../data/max-tension.csv}
+		\caption{Maximums in tension}
+		\label{tab:tension}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.8\linewidth}
-	\label{tab:compression}
-	\csvautotabular{../data/max-compression.csv}
-	\caption{Maximums in compression}
+		\csvautotabular{../data/max-compression.csv}
+		\caption{Maximums in compression}
+		\label{tab:compression}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.8\linewidth}
-	\label{tab:torsion}
-	\csvautotabular{../data/max-torsion.csv}
-	\caption{Maximums in torsion}
+		\csvautotabular{../data/max-torsion.csv}
+		\caption{Maximums in torsion}
+		\label{tab:torsion}
 	\end{subfigure}
 \end{figure}
 
 As expected, the filled test part suffered the least amount of deformation in every test. Worth noting, however, is that it consistently had more strain than the parts with hole patterns, and less stress. 
-Of the experimental parts, the triangle part showed the least deformation in all three tests. Looking at its graph of displacement in tension, Appendix \ref{ap:t-te-d}, the pattern itself shows almost no deformation. The deforming was localized to the edge of the part, where the force was applied. While triangle pattern deforms the least, it has higher stress and strain than the hex and square diamond patterns in tension and compression.
+Of the experimental parts, the triangle part showed the least deformation in all three tests. Looking at its graph of displacement in tension, Figure \ref{fig:t-te-d}, the pattern itself shows almost no deformation. The deforming was localized to the edge of the part, where the force was applied. While triangle pattern deforms the least, it has higher stress and strain than the hex and square diamond patterns in tension and compression.
 Hex diamond experiences the most deformation and strain in all tests, and is only exceeded in stress by square diamond. 
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{./graphs/tension/triangle-tension-displacement}
+	\caption{Displacement of Triangle in Tension}
+	\label{fig:t-te-d}
+\end{figure}
 
 \section{Analysis}
 \label{sec:analysis}
 
-The results show low deformation from the triangle pattern. This is not unexpected, as the triangle is the only regular euclidean polygon with all acute internal angles. Acute internal angles allows the shape to support it self when external stress is applied (Appendix \ref{ap:t-c-vm}), rather than collapsing, as the other shapes did (Appendix \ref{ap:sd-c-vm}). Obtuse internal angles are prone to open wider under load (Appendix \ref{ap:h-c-vm}), straining the vertices of the holes instead of using the force to strengthen the shape. 
+The results show low deformation from the triangle pattern. This is not unexpected, as the triangle is the only regular euclidean polygon with all acute internal angles. Acute internal angles allows the shape to support it self when external stress is applied (Figure \ref{fig:t-c-vm}), rather than collapsing, as the other shapes did (Figure \ref{fig:sd-c-vm}). Obtuse internal angles are prone to open wider under load (Figure \ref{fig:h-c-vm}), straining the vertices of the holes instead of using the force to strengthen the shape. 
 
-Appendix \ref{ap:s-te-es} demonstrates an interesting property. The strain from linear load is concentrated on edges parallel to the force, while little to no strain occurs in the edges perpendicular to the force. Shapes with edges out of alignment with the load will distribute the components of the force as a vector. The distributing behavior is best exhibited by Appendix \ref{ap:h-te-vm}, where the vertex closest to the tension force pulls on its neighboring vertices, a recursive process that is repeated in each hole. 
+\begin{figure}[H]
+	\centering
+	\caption{Graphs}
+	\label{fig:imgs}
+	\begin{subfigure}[b]{0.8\linewidth}
+		\includegraphics[width=0.8\linewidth]{./graphs/compression/square-diamond-compression-stress}
+		\caption{Von Mises Stress of Square Diamond in Compression}
+		\label{fig:sd-c-vm}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.8\linewidth}
+		\includegraphics[width=0.8\linewidth]{./graphs/compression/triangle-compression-stress}
+		\caption{Von Mises Stress of Triangle in Compression}
+		\label{fig:t-c-vm}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.8\linewidth}
+		\includegraphics[width=0.8\linewidth]{./graphs/compression/hex-compression-stress}
+		\caption{Von Mises Stress of Hex in Compression}
+		\label{fig:h-c-vm}
+	\end{subfigure}
+\end{figure}
+
+Appendix \ref{fig:s-te-es} demonstrates an interesting property. The strain from linear load is concentrated on edges parallel to the force, while little to no strain occurs in the edges perpendicular to the force. Shapes with edges out of alignment with the load will distribute the components of the force as a vector. The distributing behavior is best exhibited by Appendix \ref{fig:h-te-vm}, where the vertex closest to the tension force pulls on its neighboring vertices, a recursive process that is repeated in each hole. 
+
+\begin{figure}[H]
+	\centering
+	\caption{Graphs}
+	\label{fig:imgs2}
+	\begin{subfigure}[b]{0.8\linewidth}
+		\includegraphics[width=0.8\linewidth]{./graphs/tension/square-tension-strain}
+		\caption{Equivalent Strain of Square in Tension}
+		\label{fig:s-te-es}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.8\linewidth}
+		\includegraphics[width=0.8\linewidth]{./graphs/tension/hex-tension-stress}
+		\caption{Von Mises Stress of Hex in Tension}
+		\label{fig:h-te-vm}
+	\end{subfigure}
+\end{figure}
 
 \section{Conclusion}
 \label{sec:conclusion}
 
-To return to the question of which hole pattern best preserves strength in a sheet part under load, the answer depends on the desired effect. The triangle pattern deforms the least, providing an extremely rigid part despite its weight. Peak stress and strain may be high, but that is mainly because the stress is localized and not allowed to spread throughout the part. On the other hand, the hex pattern diffuses stress and strain, reducing the overall damage to the part, but allows substantial deformation. 
+While the deformations simulated may not be entirely accurate to real world behavior, the comparative nature of the study allows conclusions to be drawn on the relative behaviors of the patterns tested. Simulation inherently does not account for all of the variables that exist in the real world because it is a perfectly isolated system and only considers the input parameters. The study could be improved by using more or different control variables, such as perforation area or number of perforations, and run simulations with smaller mesh sizes to gather more accurate data and observe more behavior differences between the patterns. 
 
-For rigid applications, such as structural elements or metal parts, a triangular hole pattern has proven to be the best at withstanding deformation under load. For flexible components, such as rubber or silicon, a hexagon pattern will distribute forces and stresses the most, of the tested patterns. 
+To return to the question of which hole pattern best preserves strength in a sheet part under load, the answer depends on the desired effect. The triangle pattern deforms the least, providing an extremely rigid part despite its weight. Peak stress and strain may be high, but that is mainly because the stress is localized and not allowed to spread throughout the part. On the other hand, the hex pattern diffuses stress and strain, reducing the overall damage to the part, but allows substantial deformation. For rigid applications, such as structural elements or metal parts, a triangular hole pattern has proven to be the best at withstanding deformation under load. For flexible components, such as rubber or silicon, a hexagon pattern will distribute forces and stresses the most, of the tested patterns. 
 
 SolidWorks' simulation tools can be immensely valuable in the design process. Producing empirical data to choose design elements removes hours of testing, making safe and effective design more accessible and affordable. Practicing and learning the techniques in this investigation will be an advantage for my future engineering education and work. The conclusions of the investigation will aid many FRC teams that design lightened sheet metal parts. Of the two FRC examples in Figure \ref{fig:frc1}, it appears team 118 chose the right pattern. 
 
@@ -416,89 +466,27 @@ SolidWorks' simulation tools can be immensely valuable in the design process. Pr
 \section{Tension Test Graphs}
 \label{ap:te}
 
-
-
-\subsection{Tension Stress Graphs}
-\label{ap:te-vm}
-
-
-\subsubsection{Filled Tension Stress}
-\label{ap:f-te-vm}
-\includegraphics[width=0.8\linewidth]{./graphs/tension/filled-tension-stress}
-
-\subsubsection{Square Tension Stress}
-\label{ap:s-te-vm}
-\includegraphics[width=0.8\linewidth]{./graphs/tension/square-tension-stress}
-
-\subsubsection{Square Diamond Tension Stress}
-\label{ap:sd-te-vm}
-\includegraphics[width=0.8\linewidth]{./graphs/tension/square-diamond-tension-stress}
-
-\subsubsection{Hex Tension Stress}
-\label{ap:h-te-vm}
-\includegraphics[width=0.8\linewidth]{./graphs/tension/hex-tension-stress}
-
-\subsubsection{Hex Diamond Tension Stress}
-\label{ap:hd-te-vm}
-\includegraphics[width=0.8\linewidth]{./graphs/tension/hex-diamond-tension-stress}
-
-\subsubsection{Triangle Tension Stress}
-\label{ap:t-te-vm}
-\includegraphics[width=0.8\linewidth]{./graphs/tension/triangle-tension-stress}
-
-
-\subsection{Tension Strain Graphs}
-\label{ap:te-es}
-
-\subsubsection{Filled Tension Strain}
-\label{ap:f-te-es}
-\includegraphics[width=0.8\linewidth]{./graphs/tension/filled-tension-strain}
-
-\subsubsection{Square Tension Strain}
-\label{ap:s-te-es}
-\includegraphics[width=0.8\linewidth]{./graphs/tension/square-tension-strain}
-
-\subsubsection{Square Diamond Tension Strain}
-\label{ap:sd-te-es}
-\includegraphics[width=0.8\linewidth]{./graphs/tension/square-diamond-tension-strain}
-
-\subsubsection{Hex Tension Strain}
-\label{ap:h-te-es}
-\includegraphics[width=0.8\linewidth]{./graphs/tension/hex-tension-strain}
-
-\subsubsection{Hex Diamond Tension Strain}
-\label{ap:hd-te-es}
-\includegraphics[width=0.8\linewidth]{./graphs/tension/hex-diamond-tension-strain}
-
-\subsubsection{Triangle Tension Strain}
-\label{ap:t-te-es}
-\includegraphics[width=0.8\linewidth]{./graphs/tension/triangle-tension-strain}
-
-
-\subsection{Tension Displacement Graphs}
-\label{ap:te-d}
-
-\subsubsection{Filled Tension Displacement}
+\subsection{Filled Tension Displacement}
 \label{ap:f-te-d}
 \includegraphics[width=0.8\linewidth]{./graphs/tension/filled-tension-displacement}
 
-\subsubsection{Square Tension Displacement}
+\subsection{Square Tension Displacement}
 \label{ap:s-te-d}
 \includegraphics[width=0.8\linewidth]{./graphs/tension/square-tension-displacement}
 
-\subsubsection{Square Diamond Tension Displacement}
+\subsection{Square Diamond Tension Displacement}
 \label{ap:sd-te-d}
 \includegraphics[width=0.8\linewidth]{./graphs/tension/square-diamond-tension-displacement}
 
-\subsubsection{Hex Tension Displacement}
+\subsection{Hex Tension Displacement}
 \label{ap:h-te-d}
 \includegraphics[width=0.8\linewidth]{./graphs/tension/hex-tension-displacement}
 
-\subsubsection{Hex Diamond Tension Displacement}
+\subsection{Hex Diamond Tension Displacement}
 \label{ap:hd-te-d}
 \includegraphics[width=0.8\linewidth]{./graphs/tension/hex-diamond-tension-displacement}
 
-\subsubsection{Triangle Tension Displacement}
+\subsection{Triangle Tension Displacement}
 \label{ap:t-te-d}
 \includegraphics[width=0.8\linewidth]{./graphs/tension/triangle-tension-displacement}
 
@@ -507,89 +495,27 @@ SolidWorks' simulation tools can be immensely valuable in the design process. Pr
 \section{Compression Test Graphs}
 \label{ap:c}
 
-
-
-\subsection{Compression Stress Graphs}
-\label{ap:c-vm}
-
-
-\subsubsection{Filled Compression Stress}
-\label{ap:f-c-vm}
-\includegraphics[width=0.8\linewidth]{./graphs/compression/filled-compression-stress}
-
-\subsubsection{Square Compression Stress}
-\label{ap:s-c-vm}
-\includegraphics[width=0.8\linewidth]{./graphs/compression/square-compression-stress}
-
-\subsubsection{Square Diamond Compression Stress}
-\label{ap:sd-c-vm}
-\includegraphics[width=0.8\linewidth]{./graphs/compression/square-diamond-compression-stress}
-
-\subsubsection{Hex Compression Stress}
-\label{ap:h-c-vm}
-\includegraphics[width=0.8\linewidth]{./graphs/compression/hex-compression-stress}
-
-\subsubsection{Hex Diamond Compression Stress}
-\label{ap:hd-c-vm}
-\includegraphics[width=0.8\linewidth]{./graphs/compression/hex-diamond-compression-stress}
-
-\subsubsection{Triangle Compression Stress}
-\label{ap:t-c-vm}
-\includegraphics[width=0.8\linewidth]{./graphs/compression/triangle-compression-stress}
-
-
-\subsection{Compression Strain Graphs}
-\label{ap:c-es}
-
-\subsubsection{Filled Compression Strain}
-\label{ap:f-c-es}
-\includegraphics[width=0.8\linewidth]{./graphs/compression/filled-compression-strain}
-
-\subsubsection{Square Compression Strain}
-\label{ap:s-c-es}
-\includegraphics[width=0.8\linewidth]{./graphs/compression/square-compression-strain}
-
-\subsubsection{Square Diamond Compression Strain}
-\label{ap:sd-c-es}
-\includegraphics[width=0.8\linewidth]{./graphs/compression/square-diamond-compression-strain}
-
-\subsubsection{Hex Compression Strain}
-\label{ap:h-c-es}
-\includegraphics[width=0.8\linewidth]{./graphs/compression/hex-compression-strain}
-
-\subsubsection{Hex Diamond Compression Strain}
-\label{ap:hd-c-es}
-\includegraphics[width=0.8\linewidth]{./graphs/compression/hex-diamond-compression-strain}
-
-\subsubsection{Triangle Compression Strain}
-\label{ap:t-c-es}
-\includegraphics[width=0.8\linewidth]{./graphs/compression/triangle-compression-strain}
-
-
-\subsection{Compression Displacement Graphs}
-\label{ap:c-d}
-
-\subsubsection{Filled Compression Displacement}
+\subsection{Filled Compression Displacement}
 \label{ap:f-c-d}
 \includegraphics[width=0.8\linewidth]{./graphs/compression/filled-compression-displacement}
 
-\subsubsection{Square Compression Displacement}
+\subsection{Square Compression Displacement}
 \label{ap:s-c-d}
 \includegraphics[width=0.8\linewidth]{./graphs/compression/square-compression-displacement}
 
-\subsubsection{Square Diamond Compression Displacement}
+\subsection{Square Diamond Compression Displacement}
 \label{ap:sd-c-d}
 \includegraphics[width=0.8\linewidth]{./graphs/compression/square-diamond-compression-displacement}
 
-\subsubsection{Hex Compression Displacement}
+\subsection{Hex Compression Displacement}
 \label{ap:h-c-d}
 \includegraphics[width=0.8\linewidth]{./graphs/compression/hex-compression-displacement}
 
-\subsubsection{Hex Diamond Compression Displacement}
+\subsection{Hex Diamond Compression Displacement}
 \label{ap:hd-c-d}
 \includegraphics[width=0.8\linewidth]{./graphs/compression/hex-diamond-compression-displacement}
 
-\subsubsection{Triangle Compression Displacement}
+\subsection{Triangle Compression Displacement}
 \label{ap:t-c-d}
 \includegraphics[width=0.8\linewidth]{./graphs/compression/triangle-compression-displacement}
 
@@ -598,93 +524,36 @@ SolidWorks' simulation tools can be immensely valuable in the design process. Pr
 \section{Torsion Test Graphs}
 \label{ap:to}
 
-
-
-\subsection{Torsion Stress Graphs}
-\label{ap:to-vm}
-
-
-\subsubsection{Filled Torsion Stress}
-\label{ap:f-to-vm}
-\includegraphics[width=0.8\linewidth]{./graphs/torsion/filled-torsion-stress}
-
-\subsubsection{Square Torsion Stress}
-\label{ap:s-to-vm}
-\includegraphics[width=0.8\linewidth]{./graphs/torsion/square-torsion-stress}
-
-\subsubsection{Square Diamond Torsion Stress}
-\label{ap:sd-to-vm}
-\includegraphics[width=0.8\linewidth]{./graphs/torsion/square-diamond-torsion-stress}
-
-\subsubsection{Hex Torsion Stress}
-\label{ap:h-to-vm}
-\includegraphics[width=0.8\linewidth]{./graphs/torsion/hex-torsion-stress}
-
-\subsubsection{Hex Diamond Torsion Stress}
-\label{ap:hd-to-vm}
-\includegraphics[width=0.8\linewidth]{./graphs/torsion/hex-diamond-torsion-stress}
-
-\subsubsection{Triangle Torsion Stress}
-\label{ap:t-to-vm}
-\includegraphics[width=0.8\linewidth]{./graphs/torsion/triangle-torsion-stress}
-
-
-\subsection{Torsion Strain Graphs}
-\label{ap:to-es}
-
-\subsubsection{Filled Torsion Strain}
-\label{ap:f-to-es}
-\includegraphics[width=0.8\linewidth]{./graphs/torsion/filled-torsion-strain}
-
-\subsubsection{Square Torsion Strain}
-\label{ap:s-to-es}
-\includegraphics[width=0.8\linewidth]{./graphs/torsion/square-torsion-strain}
-
-\subsubsection{Square Diamond Torsion Strain}
-\label{ap:sd-to-es}
-\includegraphics[width=0.8\linewidth]{./graphs/torsion/square-diamond-torsion-strain}
-
-\subsubsection{Hex Torsion Strain}
-\label{ap:h-to-es}
-\includegraphics[width=0.8\linewidth]{./graphs/torsion/hex-torsion-strain}
-
-\subsubsection{Hex Diamond Torsion Strain}
-\label{ap:hd-to-es}
-\includegraphics[width=0.8\linewidth]{./graphs/torsion/hex-diamond-torsion-strain}
-
-\subsubsection{Triangle Torsion Strain}
-\label{ap:t-to-es}
-\includegraphics[width=0.8\linewidth]{./graphs/torsion/triangle-torsion-strain}
-
-
-\subsection{Torsion Displacement Graphs}
-\label{ap:to-d}
-
-\subsubsection{Filled Torsion Displacement}
+\subsection{Filled Torsion Displacement}
 \label{ap:f-to-d}
 \includegraphics[width=0.8\linewidth]{./graphs/torsion/filled-torsion-displacement}
 
-\subsubsection{Square Torsion Displacement}
+\subsection{Square Torsion Displacement}
 \label{ap:s-to-d}
 \includegraphics[width=0.8\linewidth]{./graphs/torsion/square-torsion-displacement}
 
-\subsubsection{Square Diamond Torsion Displacement}
+\subsection{Square Diamond Torsion Displacement}
 \label{ap:sd-to-d}
 \includegraphics[width=0.8\linewidth]{./graphs/torsion/square-diamond-torsion-displacement}
 
-\subsubsection{Hex Torsion Displacement}
+\subsection{Hex Torsion Displacement}
 \label{ap:h-to-d}
 \includegraphics[width=0.8\linewidth]{./graphs/torsion/hex-torsion-displacement}
 
-\subsubsection{Hex Diamond Torsion Displacement}
+\subsection{Hex Diamond Torsion Displacement}
 \label{ap:hd-to-d}
 \includegraphics[width=0.8\linewidth]{./graphs/torsion/hex-diamond-torsion-displacement}
 
-\subsubsection{Triangle Torsion Displacement}
+\subsection{Triangle Torsion Displacement}
 \label{ap:t-to-d}
 \includegraphics[width=0.8\linewidth]{./graphs/torsion/triangle-torsion-displacement}
 
+\section{Additional Test Graphs}
+\label{ap:graphs}
 
+The remaining graphs of the stress and strain of the three treatments for each parts can be found on the \href{https://github.com/tynanpurdy/physics-ia/tree/master/imgs/graphs}{project GitHub repository}.
+
+\url{https://github.com/tynanpurdy/physics-ia/tree/master/imgs/graphs} 
 
 \section{Simulation Animations and Data}
 \label{ap:data}
